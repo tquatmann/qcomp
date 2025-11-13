@@ -1,0 +1,16 @@
+mdp
+
+const int N;
+const double pstay;
+const double pover;
+
+module agentx
+   x : [1..N] init 1;
+   [] true -> pstay:(x'=x) + pover:(x'=min(x+2,N)) + 1-pstay-pover:(x'=min(x+1,N));
+   [] true -> pstay:(x'=x) + pover:(x'=max(x-2,1)) + 1-pstay-pover:(x'=max(x-1,1));
+endmodule
+
+module agenty=agentx[x=y] endmodule
+module agentz=agentx[x=z] endmodule
+
+

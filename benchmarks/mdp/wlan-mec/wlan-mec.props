@@ -1,0 +1,7 @@
+// Minimum expected cost for both stations to send correctly
+"cost_min": R{"cost"}min=? [ F s1=12 & s2=12 ];
+// Minimum expected time for both stations to send correctly
+"time_min": R{"time"}min=? [ F s1=12 & s2=12 ];
+// Tradeoffs between desired properties cost_min, and time_min
+"multi_pos": multi(R{"cost"}min=? [ F s1=12 & s2=12 ],
+                   R{"time"}min=? [ F s1=12 & s2=12 ]);

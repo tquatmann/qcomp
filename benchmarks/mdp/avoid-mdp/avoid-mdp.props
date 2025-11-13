@@ -1,0 +1,3 @@
+"goal_max": Pmax=? ["notbad" U "goal"];
+"time_min": Tmin=? [F "goal"];
+"multi": multi(Pmax=? ["notbad" U "goal"], Tmin=? [F "goal"]);

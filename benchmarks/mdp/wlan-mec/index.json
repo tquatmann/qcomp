@@ -1,0 +1,216 @@
+{
+	"name": "IEEE 802.11 Wireless LAN",
+	"short": "wlan-mec",
+	"type": "mdp",
+	"original": "PRISM",
+	"version": 2,
+	"date": "2025-11-13",
+	"version-history": [
+		{
+			"date": "2018-10-11",
+			"notes": "Initial version.",
+			"version": 1
+		},
+        {
+			"version": 2,
+			"date": "2025-11-13",
+			"notes": "Added property `multi´."
+        }
+	],
+	"author": [
+		"Marta Kwiatkowska <Marta.Kwiatkowska@cs.ox.ac.uk>",
+		"Gethin Norman <gethin.norman@glasgow.ac.uk>",
+		"Jeremy Sproston <sproston@di.unito.it>"
+	],
+	"submitter": "Tim Quatmann <tim.quatmann@cs.rwth-aachen.de>",
+	"source": "https://doi.org/10.1007/3-540-45605-8_11",
+	"part-of": {
+		"name": "the PRISM Benchmark Suite",
+		"url": "http://www.prismmodelchecker.org/benchmarks/"
+	},
+	"description": "This is a modification of a PRISM case study [1] to introduce a maximal end component. We consider an MDP representing the IEEE 802.11 Wireless LAN which models two stations colliding - trying to send messages at the same time over one channel - and then entering the randomised exponential backoff procedure. The timing constraints (values of parameters not listed here) of the model correspond to the Frequency Hopping Spread Spectrum (FHSS) physical layer, rounded by a factor of 50 (i.e. 1 time unit equals 50 μs) to reduce complexity. We used the integer semantics given in [0]. `COL´ is the maximum number of collisions, `MAX_BACKOFF´ the maximum backoff counter and `TRANS_TIME_MAX/MIN´ the transition times.  See [2] for more details",
+	"references": [
+		"https://doi.org/10.1109/QEST.2012.14",
+		"http://www.prismmodelchecker.org/casestudies/wlan.php"
+	],
+	"notes": "PRISM benchmark",
+	"parameters": [
+		{
+			"name": "MAX_BACKOFF",
+			"kind": "file",
+			"description": "Maximum backoff counter",
+			"type": "positive integer"
+		},
+		{
+			"name": "COL",
+			"kind": "open",
+			"description": "Maximum collision counter",
+			"type": "integer"
+		}
+	],
+	"properties": [
+		{
+			"name": "cost_min",
+			"description": "Minimum expected cost for both stations to send correctly.",
+			"type": "exp-reward"
+		},
+		{
+			"name": "time_min",
+			"description": "Minimum expected time for both stations to send correctly.",
+			"type": "exp-reward"
+		},
+        {
+            "name": "multi_pos",
+            "type": "multi-tradeoff",
+            "description": "The tradeoff between desired properties `cost_min´ and `time_min´."
+        }
+    ],
+	"files": [
+		{
+			"file": "wlan-mec.1.jani",
+			"original-file": [
+				"wlan-mec.1.prism",
+				"wlan-mec.props"
+			],
+			"conversion": {
+				"tool": "Storm-conv",
+				"version": "1.2.4 (dev)",
+				"url": "http://www.stormchecker.org",
+				"command": "storm-conv --prism wlan-mec.1.prism --tojani wlan-mec.1.jani --prop wlan-mec.props"
+			},
+			"file-parameter-values": [
+				{
+					"name": "MAX_BACKOFF",
+					"value": 2
+				}
+			],
+			"open-parameter-values": [
+				{
+					"values": [
+						{
+							"name": "COL",
+							"value": 0
+						}
+					]
+				}
+			]
+		},{
+			"file": "wlan-mec.2.jani",
+			"original-file": [
+				"wlan-mec.2.prism",
+				"wlan-mec.props"
+			],
+			"conversion": {
+				"tool": "Storm-conv",
+				"version": "1.2.4 (dev)",
+				"url": "http://www.stormchecker.org",
+				"command": "storm-conv --prism wlan-mec.0.prism --tojani wlan-mec.0.jani --prop wlan-mec.props --globalvars"
+			},
+			"file-parameter-values": [
+				{
+					"name": "MAX_BACKOFF",
+					"value": 2
+				}
+			],
+			"open-parameter-values": [
+				{
+					"values": [
+						{
+							"name": "COL",
+							"value": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"file": "wlan-mec.3.jani",
+			"original-file": [
+				"wlan-mec.3.prism",
+				"wlan-mec.props"
+			],
+			"conversion": {
+				"tool": "Storm-conv",
+				"version": "1.2.4 (dev)",
+				"url": "http://www.stormchecker.org",
+				"command": "storm-conv --prism wlan-mec.0.prism --tojani wlan-mec.0.jani --prop wlan-mec.props --globalvars"
+			},
+			"file-parameter-values": [
+				{
+					"name": "MAX_BACKOFF",
+					"value": 3
+				}
+			],
+			"open-parameter-values": [
+				{
+					"values": [
+						{
+							"name": "COL",
+							"value": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"file": "wlan-mec.4.jani",
+			"original-file": [
+				"wlan-mec.4.prism",
+				"wlan-mec.props"
+			],
+			"conversion": {
+				"tool": "Storm-conv",
+				"version": "1.2.4 (dev)",
+				"url": "http://www.stormchecker.org",
+				"command": "storm-conv --prism wlan-mec.0.prism --tojani wlan-mec.0.jani --prop wlan-mec.props --globalvars"
+			},
+			"file-parameter-values": [
+				{
+					"name": "MAX_BACKOFF",
+					"value": 4
+				}
+			],
+			"open-parameter-values": [
+				{
+					"values": [
+						{
+							"name": "COL",
+							"value": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"file": "wlan-mec.5.jani",
+			"original-file": [
+				"wlan-mec.5.prism",
+				"wlan-mec.props"
+			],
+			"conversion": {
+				"tool": "Storm-conv",
+				"version": "1.2.4 (dev)",
+				"url": "http://www.stormchecker.org",
+				"command": "storm-conv --prism wlan-mec.0.prism --tojani wlan-mec.0.jani --prop wlan-mec.props --globalvars"
+			},
+			"file-parameter-values": [
+				{
+					"name": "MAX_BACKOFF",
+					"value": 5
+				}
+			],
+			"open-parameter-values": [
+				{
+					"values": [
+						{
+							"name": "COL",
+							"value": 0
+						}
+					]
+				}
+			]
+		}
+	],
+	"results": [
+	]
+}

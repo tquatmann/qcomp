@@ -1,0 +1,164 @@
+{
+	"name": "Random Gridworld",
+	"short": "random-grid",
+	"type": "mdp",
+	"original": "PRISM",
+	"version": 2,
+	"date": "2025-11-13",
+	"version-history": [
+		{
+			"date": "2024-06-07",
+			"notes": "Initial version.",
+			"version": 1
+		},
+        {
+			"version": 2,
+			"date": "2025-11-13",
+			"notes": "Added property `multi´."
+        }
+	],
+	"author": [
+		"Sebastian Junges"
+	],
+	"submitter": "Tim Quatmann",
+	"source": "https://github.com/sjunges/gridworld-by-storm/tree/master",
+	"description": "A Gridworld model [0] where three agents all need to reach the finish while moving randomly.",
+	"references": [],
+	"notes": "hard for vi",
+	"parameters": [
+		{
+			"name": "N",
+			"kind": "open",
+			"description": "N",
+			"type": "positive integer"
+		},
+		{
+			"name": "pover",
+			"kind": "open",
+			"description": "pover",
+			"type": "probability"
+		},
+		{
+			"name": "pstay",
+			"kind": "open",
+			"description": "pstay",
+			"type": "probability"
+		}
+	],
+	"properties": [
+		{
+			"name": "prob_max",
+			"description": "The maximum probability of all agents reaching the finish, while the first agent needs to avoid the second to last position and the second needs to avoid the last position before the finish.",
+			"type": "prob-reach"
+		},
+		{
+			"name": "time_min",
+			"description": "The minimum expected time to reach the bottom of the grid.",
+			"type": "exp-steps"
+		},
+        {
+            "name": "multi",
+            "description": "The tradeoff between `goal_max´ and `time_min´.",
+            "type": "multi-tradeoff"
+        }
+	],
+	"files": [
+		{
+			"file": "random-grid.jani",
+			"original-file": [
+				"random-grid.prism",
+				"random-grid.props"
+			],
+			"conversion": {
+				"tool": "Storm-conv",
+				"version": "1.8.2 (dev)",
+				"url": "http://www.stormchecker.org",
+				"command": "storm-conv"
+			},
+			"file-parameter-values": [],
+			"open-parameter-values": [
+				{
+					"values": [
+						{
+							"name": "N",
+							"value": 40
+						},
+						{
+							"name": "pover",
+							"value": 0.3
+						},
+						{
+							"name": "pstay",
+							"value": 0.3
+						}
+					]
+				},
+				{
+					"values": [
+						{
+							"name": "N",
+							"value": 80
+						},
+						{
+							"name": "pover",
+							"value": 0.3
+						},
+						{
+							"name": "pstay",
+							"value": 0.3
+						}
+					]
+				},
+				{
+					"values": [
+						{
+							"name": "N",
+							"value": 140
+						},
+						{
+							"name": "pover",
+							"value": 0.3
+						},
+						{
+							"name": "pstay",
+							"value": 0.3
+						}
+					]
+				},
+				{
+					"values": [
+						{
+							"name": "N",
+							"value": 180
+						},
+						{
+							"name": "pover",
+							"value": 0.3
+						},
+						{
+							"name": "pstay",
+							"value": 0.3
+						}
+					]
+				},
+				{
+					"values": [
+						{
+							"name": "N",
+							"value": 200
+						},
+						{
+							"name": "pover",
+							"value": 0.3
+						},
+						{
+							"name": "pstay",
+							"value": 0.3
+						}
+					]
+				}
+			]
+		}
+	],
+	"results": []
+}

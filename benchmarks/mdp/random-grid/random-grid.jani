@@ -1,0 +1,639 @@
+{
+    "actions": [],
+    "automata": [
+        {
+            "edges": [
+                {
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "x <- x",
+                                    "ref": "x",
+                                    "value": "x"
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pstay",
+                                "exp": "pstay"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "x <- (min((x + 2), N))",
+                                    "ref": "x",
+                                    "value": {
+                                        "left": {
+                                            "left": "x",
+                                            "op": "+",
+                                            "right": 2
+                                        },
+                                        "op": "min",
+                                        "right": "N"
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pover",
+                                "exp": "pover"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "x <- (min((x + 1), N))",
+                                    "ref": "x",
+                                    "value": {
+                                        "left": {
+                                            "left": "x",
+                                            "op": "+",
+                                            "right": 1
+                                        },
+                                        "op": "min",
+                                        "right": "N"
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1 - pstay) - pover)",
+                                "exp": {
+                                    "left": {
+                                        "left": 1,
+                                        "op": "-",
+                                        "right": "pstay"
+                                    },
+                                    "op": "-",
+                                    "right": "pover"
+                                }
+                            }
+                        }
+                    ],
+                    "location": "l"
+                },
+                {
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "x <- x",
+                                    "ref": "x",
+                                    "value": "x"
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pstay",
+                                "exp": "pstay"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "x <- (max((x - 2), 1))",
+                                    "ref": "x",
+                                    "value": {
+                                        "left": {
+                                            "left": "x",
+                                            "op": "-",
+                                            "right": 2
+                                        },
+                                        "op": "max",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pover",
+                                "exp": "pover"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "x <- (max((x - 1), 1))",
+                                    "ref": "x",
+                                    "value": {
+                                        "left": {
+                                            "left": "x",
+                                            "op": "-",
+                                            "right": 1
+                                        },
+                                        "op": "max",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1 - pstay) - pover)",
+                                "exp": {
+                                    "left": {
+                                        "left": 1,
+                                        "op": "-",
+                                        "right": "pstay"
+                                    },
+                                    "op": "-",
+                                    "right": "pover"
+                                }
+                            }
+                        }
+                    ],
+                    "location": "l"
+                }
+            ],
+            "initial-locations": [
+                "l"
+            ],
+            "locations": [
+                {
+                    "name": "l"
+                }
+            ],
+            "name": "agentx",
+            "variables": []
+        },
+        {
+            "edges": [
+                {
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "y <- y",
+                                    "ref": "y",
+                                    "value": "y"
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pstay",
+                                "exp": "pstay"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "y <- (min((y + 2), N))",
+                                    "ref": "y",
+                                    "value": {
+                                        "left": {
+                                            "left": "y",
+                                            "op": "+",
+                                            "right": 2
+                                        },
+                                        "op": "min",
+                                        "right": "N"
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pover",
+                                "exp": "pover"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "y <- (min((y + 1), N))",
+                                    "ref": "y",
+                                    "value": {
+                                        "left": {
+                                            "left": "y",
+                                            "op": "+",
+                                            "right": 1
+                                        },
+                                        "op": "min",
+                                        "right": "N"
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1 - pstay) - pover)",
+                                "exp": {
+                                    "left": {
+                                        "left": 1,
+                                        "op": "-",
+                                        "right": "pstay"
+                                    },
+                                    "op": "-",
+                                    "right": "pover"
+                                }
+                            }
+                        }
+                    ],
+                    "location": "l"
+                },
+                {
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "y <- y",
+                                    "ref": "y",
+                                    "value": "y"
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pstay",
+                                "exp": "pstay"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "y <- (max((y - 2), 1))",
+                                    "ref": "y",
+                                    "value": {
+                                        "left": {
+                                            "left": "y",
+                                            "op": "-",
+                                            "right": 2
+                                        },
+                                        "op": "max",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pover",
+                                "exp": "pover"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "y <- (max((y - 1), 1))",
+                                    "ref": "y",
+                                    "value": {
+                                        "left": {
+                                            "left": "y",
+                                            "op": "-",
+                                            "right": 1
+                                        },
+                                        "op": "max",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1 - pstay) - pover)",
+                                "exp": {
+                                    "left": {
+                                        "left": 1,
+                                        "op": "-",
+                                        "right": "pstay"
+                                    },
+                                    "op": "-",
+                                    "right": "pover"
+                                }
+                            }
+                        }
+                    ],
+                    "location": "l"
+                }
+            ],
+            "initial-locations": [
+                "l"
+            ],
+            "locations": [
+                {
+                    "name": "l"
+                }
+            ],
+            "name": "agenty",
+            "variables": []
+        },
+        {
+            "edges": [
+                {
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "z <- z",
+                                    "ref": "z",
+                                    "value": "z"
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pstay",
+                                "exp": "pstay"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "z <- (min((z + 2), N))",
+                                    "ref": "z",
+                                    "value": {
+                                        "left": {
+                                            "left": "z",
+                                            "op": "+",
+                                            "right": 2
+                                        },
+                                        "op": "min",
+                                        "right": "N"
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pover",
+                                "exp": "pover"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "z <- (min((z + 1), N))",
+                                    "ref": "z",
+                                    "value": {
+                                        "left": {
+                                            "left": "z",
+                                            "op": "+",
+                                            "right": 1
+                                        },
+                                        "op": "min",
+                                        "right": "N"
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1 - pstay) - pover)",
+                                "exp": {
+                                    "left": {
+                                        "left": 1,
+                                        "op": "-",
+                                        "right": "pstay"
+                                    },
+                                    "op": "-",
+                                    "right": "pover"
+                                }
+                            }
+                        }
+                    ],
+                    "location": "l"
+                },
+                {
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "z <- z",
+                                    "ref": "z",
+                                    "value": "z"
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pstay",
+                                "exp": "pstay"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "z <- (max((z - 2), 1))",
+                                    "ref": "z",
+                                    "value": {
+                                        "left": {
+                                            "left": "z",
+                                            "op": "-",
+                                            "right": 2
+                                        },
+                                        "op": "max",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "pover",
+                                "exp": "pover"
+                            }
+                        },
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "z <- (max((z - 1), 1))",
+                                    "ref": "z",
+                                    "value": {
+                                        "left": {
+                                            "left": "z",
+                                            "op": "-",
+                                            "right": 1
+                                        },
+                                        "op": "max",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1 - pstay) - pover)",
+                                "exp": {
+                                    "left": {
+                                        "left": 1,
+                                        "op": "-",
+                                        "right": "pstay"
+                                    },
+                                    "op": "-",
+                                    "right": "pover"
+                                }
+                            }
+                        }
+                    ],
+                    "location": "l"
+                }
+            ],
+            "initial-locations": [
+                "l"
+            ],
+            "locations": [
+                {
+                    "name": "l"
+                }
+            ],
+            "name": "agentz",
+            "variables": []
+        }
+    ],
+    "constants": [
+        {
+            "name": "N",
+            "type": "int"
+        },
+        {
+            "name": "pstay",
+            "type": "real"
+        },
+        {
+            "name": "pover",
+            "type": "real"
+        }
+    ],
+    "features": [
+        "derived-operators"
+    ],
+    "jani-version": 1,
+    "name": "random-grid",
+    "properties": [
+        {
+            "expression": {
+                "fun": "values",
+                "op": "filter",
+                "states": {
+                    "op": "initial"
+                },
+                "values": {
+                    "exp": {
+                        "left": {
+                            "left": {
+                                "left": "x",
+                                "op": "≠",
+                                "right": {
+                                    "left": "N",
+                                    "op": "-",
+                                    "right": 1
+                                }
+                            },
+                            "op": "∧",
+                            "right": {
+                                "left": "y",
+                                "op": "≠",
+                                "right": {
+                                    "left": "N",
+                                    "op": "-",
+                                    "right": 2
+                                }
+                            }
+                        },
+                        "op": "U",
+                        "right": {
+                            "left": {
+                                "left": {
+                                    "left": "x",
+                                    "op": "=",
+                                    "right": "N"
+                                },
+                                "op": "∧",
+                                "right": {
+                                    "left": "y",
+                                    "op": "=",
+                                    "right": "N"
+                                }
+                            },
+                            "op": "∧",
+                            "right": {
+                                "left": "z",
+                                "op": "=",
+                                "right": "N"
+                            }
+                        }
+                    },
+                    "op": "Pmax"
+                }
+            },
+            "name": "prob_max"
+        },
+        {
+            "expression": {
+                "fun": "values",
+                "op": "filter",
+                "states": {
+                    "op": "initial"
+                },
+                "values": {
+                    "accumulate": [
+                        "steps"
+                    ],
+                    "exp": 1,
+                    "op": "Emin",
+                    "reach": {
+                        "left": {
+                            "left": {
+                                "left": "x",
+                                "op": "=",
+                                "right": "N"
+                            },
+                            "op": "∧",
+                            "right": {
+                                "left": "y",
+                                "op": "=",
+                                "right": "N"
+                            }
+                        },
+                        "op": "∧",
+                        "right": {
+                            "left": "z",
+                            "op": "=",
+                            "right": "N"
+                        }
+                    }
+                }
+            },
+            "name": "time_min"
+        }
+    ],
+    "restrict-initial": {
+        "exp": true
+    },
+    "system": {
+        "elements": [
+            {
+                "automaton": "agentx"
+            },
+            {
+                "automaton": "agenty"
+            },
+            {
+                "automaton": "agentz"
+            }
+        ]
+    },
+    "type": "mdp",
+    "variables": [
+        {
+            "initial-value": 1,
+            "name": "x",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 1,
+                "upper-bound": "N"
+            }
+        },
+        {
+            "initial-value": 1,
+            "name": "y",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 1,
+                "upper-bound": "N"
+            }
+        },
+        {
+            "initial-value": 1,
+            "name": "z",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 1,
+                "upper-bound": "N"
+            }
+        }
+    ]
+}
