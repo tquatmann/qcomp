@@ -82,7 +82,152 @@
 				"command": "storm-conv"
 			},
             "file-parameter-values": [],
-			"open-parameter-values": []
+			"open-parameter-values": [
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 1
+						},
+						{
+							"name": "B",
+							"value": 10
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 2
+						},
+						{
+							"name": "B",
+							"value": 10
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 1
+						},
+						{
+							"name": "B",
+							"value": 20
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 2
+						},
+						{
+							"name": "B",
+							"value": 20
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 1
+						},
+						{
+							"name": "B",
+							"value": 30
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 2
+						},
+						{
+							"name": "B",
+							"value": 30
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 1
+						},
+						{
+							"name": "B",
+							"value": 100
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 2
+						},
+						{
+							"name": "B",
+							"value": 100
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 1
+						},
+						{
+							"name": "B",
+							"value": 500
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 2
+						},
+						{
+							"name": "B",
+							"value": 500
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 1
+						},
+						{
+							"name": "B",
+							"value": 1000
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 2
+						},
+						{
+							"name": "B",
+							"value": 1000
+						}
+					]
+				}
+            ]
 		}
     ],
 	"results": []

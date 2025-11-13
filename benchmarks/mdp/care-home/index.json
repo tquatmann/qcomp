@@ -81,7 +81,32 @@
 				"command": "storm-conv"
 			},
             "file-parameter-values": [],
-			"open-parameter-values": []
+			"open-parameter-values": [
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 0
+						},
+						{
+							"name": "B",
+							"value": 0
+						}
+					]
+				},
+                {
+					"values": [
+						{
+							"name": "Unf",
+							"value": 1
+						},
+						{
+							"name": "B",
+							"value": 160
+						}
+					]
+				}
+            ]
 		}
     ],
 	"results": []
