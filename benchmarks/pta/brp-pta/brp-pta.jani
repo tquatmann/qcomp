@@ -2,7 +2,10 @@
 	"jani-version": 1,
 	"name": "brp-pta",
 	"type": "pta",
-	"features": [ "derived-operators" ],
+	"features": [
+		"derived-operators",
+		"multi-objective-properties"
+	],
 	"actions": [
 		{
 			"name": "s_ok"
@@ -481,99 +484,106 @@
 		{
 			"name": "Multi",
 			"expression": {
-				"op": "Multi",
-				"properties": [
-					{
-						"exp": {
-							"op": "Pmax",
+				"op": "filter",
+				"fun": "values",
+				"values": {
+					"op": "Multi",
+					"properties": [
+						{
 							"exp": {
-								"op": "F",
+								"op": "Pmax",
 								"exp": {
-									"op": "∨",
-									"left": "s_nok_seen",
-									"right": "s_dk_seen"
-								}
-							}
-						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Pmax",
-							"exp": {
-								"op": "F",
-								"exp": "s_dk_seen"
-							}
-						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Pmax",
-							"exp": {
-								"op": "F",
-								"exp": {
-									"op": "∧",
-									"left": "s_nok_seen",
-									"right": {
-										"op": ">",
-										"left": "i",
-										"right": 8
+									"op": "F",
+									"exp": {
+										"op": "∨",
+										"left": "s_nok_seen",
+										"right": "s_dk_seen"
 									}
 								}
-							}
+							},
+							"opt": "max"
 						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Pmax",
+						{
 							"exp": {
-								"op": "F",
+								"op": "Pmax",
 								"exp": {
-									"op": "∧",
-									"left": {
-										"op": "∨",
+									"op": "F",
+									"exp": "s_dk_seen"
+								}
+							},
+							"opt": "max"
+						},
+						{
+							"exp": {
+								"op": "Pmax",
+								"exp": {
+									"op": "F",
+									"exp": {
+										"op": "∧",
+										"left": "s_nok_seen",
+										"right": {
+											"op": ">",
+											"left": "i",
+											"right": 8
+										}
+									}
+								}
+							},
+							"opt": "max"
+						},
+						{
+							"exp": {
+								"op": "Pmax",
+								"exp": {
+									"op": "F",
+									"exp": {
+										"op": "∧",
 										"left": {
 											"op": "∨",
-											"left": "s_ok_seen",
-											"right": "s_nok_seen"
+											"left": {
+												"op": "∨",
+												"left": "s_ok_seen",
+												"right": "s_nok_seen"
+											},
+											"right": "s_dk_seen"
 										},
-										"right": "s_dk_seen"
-									},
-									"right": {
-										"op": "¬",
-										"exp": "get_k_seen"
+										"right": {
+											"op": "¬",
+											"exp": "get_k_seen"
+										}
 									}
 								}
-							}
+							},
+							"opt": "max"
 						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Pmin",
+						{
 							"exp": {
-								"op": "F",
-								"exp": "s_ok_seen",
-								"time-bounds": {
-									"upper": "TIME_BOUND"
+								"op": "Pmin",
+								"exp": {
+									"op": "F",
+									"exp": "s_ok_seen",
+									"time-bounds": {
+										"upper": "TIME_BOUND"
+									}
 								}
-							}
+							},
+							"opt": "min"
 						},
-						"opt": "min"
-					},
-					{
-						"exp": {
-							"op": "Emax",
-							"exp": 1,
-							"accumulate": [ "time" ],
-							"reach": "first_file_done"
-						},
-						"opt": "max"
-					}
-				],
-				"type": "tradeoff"
+						{
+							"exp": {
+								"op": "Emax",
+								"exp": 1,
+								"accumulate": [ "time" ],
+								"reach": "first_file_done"
+							},
+							"opt": "max"
+						}
+					],
+					"type": "tradeoff"
+				},
+				"states": {
+					"op": "initial"
+				}
 			}
 		}
 	],

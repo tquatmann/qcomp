@@ -2,7 +2,10 @@
 	"jani-version": 1,
 	"name": "bitcoin-attack",
 	"type": "ma",
-	"features": [ "derived-operators" ],
+	"features": [
+		"derived-operators",
+		"multi-objective-properties"
+	],
 	"actions": [
 		{
 			"name": "sln"
@@ -114,14 +117,42 @@
 		{
 			"name": "Multi",
 			"expression": {
-				"op": "Multi",
-				"properties": [
-					{
-						"exp": {
-							"op": "Pmax",
+				"op": "filter",
+				"fun": "values",
+				"values": {
+					"op": "Multi",
+					"properties": [
+						{
 							"exp": {
-								"op": "F",
+								"op": "Pmax",
 								"exp": {
+									"op": "F",
+									"exp": {
+										"op": "∧",
+										"left": {
+											"op": "≥",
+											"left": "m_len",
+											"right": "CD"
+										},
+										"right": {
+											"op": ">",
+											"left": "m_diff",
+											"right": 0
+										}
+									},
+									"time-bounds": {
+										"upper": 2880
+									}
+								}
+							},
+							"opt": "max"
+						},
+						{
+							"exp": {
+								"op": "Emin",
+								"exp": 1,
+								"accumulate": [ "time" ],
+								"reach": {
 									"op": "∧",
 									"left": {
 										"op": "≥",
@@ -133,37 +164,16 @@
 										"left": "m_diff",
 										"right": 0
 									}
-								},
-								"time-bounds": {
-									"upper": 2880
 								}
-							}
-						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Emin",
-							"exp": 1,
-							"accumulate": [ "time" ],
-							"reach": {
-								"op": "∧",
-								"left": {
-									"op": "≥",
-									"left": "m_len",
-									"right": "CD"
-								},
-								"right": {
-									"op": ">",
-									"left": "m_diff",
-									"right": 0
-								}
-							}
-						},
-						"opt": "min"
-					}
-				],
-				"type": "tradeoff"
+							},
+							"opt": "min"
+						}
+					],
+					"type": "tradeoff"
+				},
+				"states": {
+					"op": "initial"
+				}
 			}
 		}
 	],

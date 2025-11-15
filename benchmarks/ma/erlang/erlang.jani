@@ -2,7 +2,10 @@
 	"jani-version": 1,
 	"name": "erlang",
 	"type": "ma",
-	"features": [ "derived-operators" ],
+	"features": [
+		"derived-operators",
+		"multi-objective-properties"
+	],
 	"actions": [
 		{
 			"name": "a"
@@ -107,64 +110,78 @@
 		{
 			"name": "MultiPos",
 			"expression": {
-				"op": "Multi",
-				"properties": [
-					{
-						"exp": {
-							"op": "Emin",
-							"exp": 1,
-							"accumulate": [ "time" ],
-							"reach": "goal"
-						},
-						"opt": "min"
-					},
-					{
-						"exp": {
-							"op": "Pmax",
+				"op": "filter",
+				"fun": "values",
+				"values": {
+					"op": "Multi",
+					"properties": [
+						{
 							"exp": {
-								"op": "F",
-								"exp": "goal",
-								"time-bounds": {
-									"upper": "TIME_BOUND"
-								}
-							}
+								"op": "Emin",
+								"exp": 1,
+								"accumulate": [ "time" ],
+								"reach": "goal"
+							},
+							"opt": "min"
 						},
-						"opt": "max"
-					}
-				],
-				"type": "tradeoff"
+						{
+							"exp": {
+								"op": "Pmax",
+								"exp": {
+									"op": "F",
+									"exp": "goal",
+									"time-bounds": {
+										"upper": "TIME_BOUND"
+									}
+								}
+							},
+							"opt": "max"
+						}
+					],
+					"type": "tradeoff"
+				},
+				"states": {
+					"op": "initial"
+				}
 			}
 		},
 		{
 			"name": "MultiNeg",
 			"expression": {
-				"op": "Multi",
-				"properties": [
-					{
-						"exp": {
-							"op": "Pmin",
+				"op": "filter",
+				"fun": "values",
+				"values": {
+					"op": "Multi",
+					"properties": [
+						{
 							"exp": {
-								"op": "F",
-								"exp": "goal"
-							}
-						},
-						"opt": "min"
-					},
-					{
-						"exp": {
-							"op": "Smax",
-							"exp": {
-								"op": "ite",
-								"if": "goal",
-								"then": 0,
-								"else": 1
+								"op": "Pmin",
+								"exp": {
+									"op": "F",
+									"exp": "goal"
+								}
 							},
-							"accumulate": [ "steps" ]
+							"opt": "min"
 						},
-						"opt": "max"
-					}
-				],
-				"type": "tradeoff"
+						{
+							"exp": {
+								"op": "Smax",
+								"exp": {
+									"op": "ite",
+									"if": "goal",
+									"then": 0,
+									"else": 1
+								},
+								"accumulate": [ "steps" ]
+							},
+							"opt": "max"
+						}
+					],
+					"type": "tradeoff"
+				},
+				"states": {
+					"op": "initial"
+				}
 			}
 		}
 	],

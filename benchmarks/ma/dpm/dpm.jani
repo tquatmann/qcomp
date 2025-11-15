@@ -2,7 +2,10 @@
 	"jani-version": 1,
 	"name": "dpm",
 	"type": "ma",
-	"features": [ "derived-operators" ],
+	"features": [
+		"derived-operators",
+		"multi-objective-properties"
+	],
 	"actions": [
 		{
 			"name": "sleep?"
@@ -1064,16 +1067,17 @@
 		{
 			"name": "Multi",
 			"expression": {
-				"op": "Multi",
-				"properties": [
-					{
-						"exp": {
-							"op": "Pmax",
+				"op": "filter",
+				"fun": "values",
+				"values": {
+					"op": "Multi",
+					"properties": [
+						{
 							"exp": {
-								"op": "F",
+								"op": "Pmax",
 								"exp": {
-									"op": "∧",
-									"left": {
+									"op": "F",
+									"exp": {
 										"op": "∧",
 										"left": {
 											"op": "∧",
@@ -1090,16 +1094,32 @@
 																"left": {
 																	"op": "∧",
 																	"left": {
-																		"op": "∨",
+																		"op": "∧",
 																		"left": {
-																			"op": "<",
-																			"left": "N",
-																			"right": 1
+																			"op": "∨",
+																			"left": {
+																				"op": "<",
+																				"left": "N",
+																				"right": 1
+																			},
+																			"right": {
+																				"op": "=",
+																				"left": "items1",
+																				"right": "C"
+																			}
 																		},
 																		"right": {
-																			"op": "=",
-																			"left": "items1",
-																			"right": "C"
+																			"op": "∨",
+																			"left": {
+																				"op": "<",
+																				"left": "N",
+																				"right": 2
+																			},
+																			"right": {
+																				"op": "=",
+																				"left": "items2",
+																				"right": "C"
+																			}
 																		}
 																	},
 																	"right": {
@@ -1107,11 +1127,11 @@
 																		"left": {
 																			"op": "<",
 																			"left": "N",
-																			"right": 2
+																			"right": 3
 																		},
 																		"right": {
 																			"op": "=",
-																			"left": "items2",
+																			"left": "items3",
 																			"right": "C"
 																		}
 																	}
@@ -1121,11 +1141,11 @@
 																	"left": {
 																		"op": "<",
 																		"left": "N",
-																		"right": 3
+																		"right": 4
 																	},
 																	"right": {
 																		"op": "=",
-																		"left": "items3",
+																		"left": "items4",
 																		"right": "C"
 																	}
 																}
@@ -1135,11 +1155,11 @@
 																"left": {
 																	"op": "<",
 																	"left": "N",
-																	"right": 4
+																	"right": 5
 																},
 																"right": {
 																	"op": "=",
-																	"left": "items4",
+																	"left": "items5",
 																	"right": "C"
 																}
 															}
@@ -1149,11 +1169,11 @@
 															"left": {
 																"op": "<",
 																"left": "N",
-																"right": 5
+																"right": 6
 															},
 															"right": {
 																"op": "=",
-																"left": "items5",
+																"left": "items6",
 																"right": "C"
 															}
 														}
@@ -1163,11 +1183,11 @@
 														"left": {
 															"op": "<",
 															"left": "N",
-															"right": 6
+															"right": 7
 														},
 														"right": {
 															"op": "=",
-															"left": "items6",
+															"left": "items7",
 															"right": "C"
 														}
 													}
@@ -1177,11 +1197,11 @@
 													"left": {
 														"op": "<",
 														"left": "N",
-														"right": 7
+														"right": 8
 													},
 													"right": {
 														"op": "=",
-														"left": "items7",
+														"left": "items8",
 														"right": "C"
 													}
 												}
@@ -1191,11 +1211,11 @@
 												"left": {
 													"op": "<",
 													"left": "N",
-													"right": 8
+													"right": 9
 												},
 												"right": {
 													"op": "=",
-													"left": "items8",
+													"left": "items9",
 													"right": "C"
 												}
 											}
@@ -1205,538 +1225,528 @@
 											"left": {
 												"op": "<",
 												"left": "N",
-												"right": 9
+												"right": 10
 											},
 											"right": {
 												"op": "=",
-												"left": "items9",
+												"left": "items10",
 												"right": "C"
 											}
-										}
-									},
-									"right": {
-										"op": "∨",
-										"left": {
-											"op": "<",
-											"left": "N",
-											"right": 10
-										},
-										"right": {
-											"op": "=",
-											"left": "items10",
-											"right": "C"
 										}
 									}
 								}
-							}
-						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Emin",
-							"exp": 1,
-							"accumulate": [ "time" ],
-							"reach": {
-								"op": "∧",
-								"left": {
-									"op": "∧",
-									"left": {
-										"op": "∧",
-										"left": {
-											"op": "∧",
-											"left": {
-												"op": "∧",
-												"left": {
-													"op": "∧",
-													"left": {
-														"op": "∧",
-														"left": {
-															"op": "∧",
-															"left": {
-																"op": "∧",
-																"left": {
-																	"op": "∨",
-																	"left": {
-																		"op": "<",
-																		"left": "N",
-																		"right": 1
-																	},
-																	"right": {
-																		"op": "=",
-																		"left": "items1",
-																		"right": "C"
-																	}
-																},
-																"right": {
-																	"op": "∨",
-																	"left": {
-																		"op": "<",
-																		"left": "N",
-																		"right": 2
-																	},
-																	"right": {
-																		"op": "=",
-																		"left": "items2",
-																		"right": "C"
-																	}
-																}
-															},
-															"right": {
-																"op": "∨",
-																"left": {
-																	"op": "<",
-																	"left": "N",
-																	"right": 3
-																},
-																"right": {
-																	"op": "=",
-																	"left": "items3",
-																	"right": "C"
-																}
-															}
-														},
-														"right": {
-															"op": "∨",
-															"left": {
-																"op": "<",
-																"left": "N",
-																"right": 4
-															},
-															"right": {
-																"op": "=",
-																"left": "items4",
-																"right": "C"
-															}
-														}
-													},
-													"right": {
-														"op": "∨",
-														"left": {
-															"op": "<",
-															"left": "N",
-															"right": 5
-														},
-														"right": {
-															"op": "=",
-															"left": "items5",
-															"right": "C"
-														}
-													}
-												},
-												"right": {
-													"op": "∨",
-													"left": {
-														"op": "<",
-														"left": "N",
-														"right": 6
-													},
-													"right": {
-														"op": "=",
-														"left": "items6",
-														"right": "C"
-													}
-												}
-											},
-											"right": {
-												"op": "∨",
-												"left": {
-													"op": "<",
-													"left": "N",
-													"right": 7
-												},
-												"right": {
-													"op": "=",
-													"left": "items7",
-													"right": "C"
-												}
-											}
-										},
-										"right": {
-											"op": "∨",
-											"left": {
-												"op": "<",
-												"left": "N",
-												"right": 8
-											},
-											"right": {
-												"op": "=",
-												"left": "items8",
-												"right": "C"
-											}
-										}
-									},
-									"right": {
-										"op": "∨",
-										"left": {
-											"op": "<",
-											"left": "N",
-											"right": 9
-										},
-										"right": {
-											"op": "=",
-											"left": "items9",
-											"right": "C"
-										}
-									}
-								},
-								"right": {
-									"op": "∨",
-									"left": {
-										"op": "<",
-										"left": "N",
-										"right": 10
-									},
-									"right": {
-										"op": "=",
-										"left": "items10",
-										"right": "C"
-									}
-								}
-							}
-						},
-						"opt": "min"
-					},
-					{
-						"exp": {
-							"op": "Pmax",
-							"exp": {
-								"op": "F",
-								"exp": {
-									"op": "∧",
-									"left": {
-										"op": "∧",
-										"left": {
-											"op": "∧",
-											"left": {
-												"op": "∧",
-												"left": {
-													"op": "∧",
-													"left": {
-														"op": "∧",
-														"left": {
-															"op": "∧",
-															"left": {
-																"op": "∧",
-																"left": {
-																	"op": "∧",
-																	"left": {
-																		"op": "∨",
-																		"left": {
-																			"op": "<",
-																			"left": "N",
-																			"right": 1
-																		},
-																		"right": {
-																			"op": "=",
-																			"left": "items1",
-																			"right": "C"
-																		}
-																	},
-																	"right": {
-																		"op": "∨",
-																		"left": {
-																			"op": "<",
-																			"left": "N",
-																			"right": 2
-																		},
-																		"right": {
-																			"op": "=",
-																			"left": "items2",
-																			"right": "C"
-																		}
-																	}
-																},
-																"right": {
-																	"op": "∨",
-																	"left": {
-																		"op": "<",
-																		"left": "N",
-																		"right": 3
-																	},
-																	"right": {
-																		"op": "=",
-																		"left": "items3",
-																		"right": "C"
-																	}
-																}
-															},
-															"right": {
-																"op": "∨",
-																"left": {
-																	"op": "<",
-																	"left": "N",
-																	"right": 4
-																},
-																"right": {
-																	"op": "=",
-																	"left": "items4",
-																	"right": "C"
-																}
-															}
-														},
-														"right": {
-															"op": "∨",
-															"left": {
-																"op": "<",
-																"left": "N",
-																"right": 5
-															},
-															"right": {
-																"op": "=",
-																"left": "items5",
-																"right": "C"
-															}
-														}
-													},
-													"right": {
-														"op": "∨",
-														"left": {
-															"op": "<",
-															"left": "N",
-															"right": 6
-														},
-														"right": {
-															"op": "=",
-															"left": "items6",
-															"right": "C"
-														}
-													}
-												},
-												"right": {
-													"op": "∨",
-													"left": {
-														"op": "<",
-														"left": "N",
-														"right": 7
-													},
-													"right": {
-														"op": "=",
-														"left": "items7",
-														"right": "C"
-													}
-												}
-											},
-											"right": {
-												"op": "∨",
-												"left": {
-													"op": "<",
-													"left": "N",
-													"right": 8
-												},
-												"right": {
-													"op": "=",
-													"left": "items8",
-													"right": "C"
-												}
-											}
-										},
-										"right": {
-											"op": "∨",
-											"left": {
-												"op": "<",
-												"left": "N",
-												"right": 9
-											},
-											"right": {
-												"op": "=",
-												"left": "items9",
-												"right": "C"
-											}
-										}
-									},
-									"right": {
-										"op": "∨",
-										"left": {
-											"op": "<",
-											"left": "N",
-											"right": 10
-										},
-										"right": {
-											"op": "=",
-											"left": "items10",
-											"right": "C"
-										}
-									}
-								},
-								"time-bounds": {
-									"upper": "TIME_BOUND"
-								}
-							}
-						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Smax",
-							"exp": {
-								"op": "ite",
-								"if": {
-									"op": "∧",
-									"left": {
-										"op": "∧",
-										"left": {
-											"op": "∧",
-											"left": {
-												"op": "∧",
-												"left": {
-													"op": "∧",
-													"left": {
-														"op": "∧",
-														"left": {
-															"op": "∧",
-															"left": {
-																"op": "∧",
-																"left": {
-																	"op": "∧",
-																	"left": {
-																		"op": "∨",
-																		"left": {
-																			"op": "<",
-																			"left": "N",
-																			"right": 1
-																		},
-																		"right": {
-																			"op": "=",
-																			"left": "items1",
-																			"right": "C"
-																		}
-																	},
-																	"right": {
-																		"op": "∨",
-																		"left": {
-																			"op": "<",
-																			"left": "N",
-																			"right": 2
-																		},
-																		"right": {
-																			"op": "=",
-																			"left": "items2",
-																			"right": "C"
-																		}
-																	}
-																},
-																"right": {
-																	"op": "∨",
-																	"left": {
-																		"op": "<",
-																		"left": "N",
-																		"right": 3
-																	},
-																	"right": {
-																		"op": "=",
-																		"left": "items3",
-																		"right": "C"
-																	}
-																}
-															},
-															"right": {
-																"op": "∨",
-																"left": {
-																	"op": "<",
-																	"left": "N",
-																	"right": 4
-																},
-																"right": {
-																	"op": "=",
-																	"left": "items4",
-																	"right": "C"
-																}
-															}
-														},
-														"right": {
-															"op": "∨",
-															"left": {
-																"op": "<",
-																"left": "N",
-																"right": 5
-															},
-															"right": {
-																"op": "=",
-																"left": "items5",
-																"right": "C"
-															}
-														}
-													},
-													"right": {
-														"op": "∨",
-														"left": {
-															"op": "<",
-															"left": "N",
-															"right": 6
-														},
-														"right": {
-															"op": "=",
-															"left": "items6",
-															"right": "C"
-														}
-													}
-												},
-												"right": {
-													"op": "∨",
-													"left": {
-														"op": "<",
-														"left": "N",
-														"right": 7
-													},
-													"right": {
-														"op": "=",
-														"left": "items7",
-														"right": "C"
-													}
-												}
-											},
-											"right": {
-												"op": "∨",
-												"left": {
-													"op": "<",
-													"left": "N",
-													"right": 8
-												},
-												"right": {
-													"op": "=",
-													"left": "items8",
-													"right": "C"
-												}
-											}
-										},
-										"right": {
-											"op": "∨",
-											"left": {
-												"op": "<",
-												"left": "N",
-												"right": 9
-											},
-											"right": {
-												"op": "=",
-												"left": "items9",
-												"right": "C"
-											}
-										}
-									},
-									"right": {
-										"op": "∨",
-										"left": {
-											"op": "<",
-											"left": "N",
-											"right": 10
-										},
-										"right": {
-											"op": "=",
-											"left": "items10",
-											"right": "C"
-										}
-									}
-								},
-								"then": 1,
-								"else": 0
 							},
-							"accumulate": [ "time" ]
+							"opt": "max"
 						},
-						"opt": "max"
-					}
-				],
-				"type": "tradeoff"
+						{
+							"exp": {
+								"op": "Emin",
+								"exp": 1,
+								"accumulate": [ "time" ],
+								"reach": {
+									"op": "∧",
+									"left": {
+										"op": "∧",
+										"left": {
+											"op": "∧",
+											"left": {
+												"op": "∧",
+												"left": {
+													"op": "∧",
+													"left": {
+														"op": "∧",
+														"left": {
+															"op": "∧",
+															"left": {
+																"op": "∧",
+																"left": {
+																	"op": "∧",
+																	"left": {
+																		"op": "∨",
+																		"left": {
+																			"op": "<",
+																			"left": "N",
+																			"right": 1
+																		},
+																		"right": {
+																			"op": "=",
+																			"left": "items1",
+																			"right": "C"
+																		}
+																	},
+																	"right": {
+																		"op": "∨",
+																		"left": {
+																			"op": "<",
+																			"left": "N",
+																			"right": 2
+																		},
+																		"right": {
+																			"op": "=",
+																			"left": "items2",
+																			"right": "C"
+																		}
+																	}
+																},
+																"right": {
+																	"op": "∨",
+																	"left": {
+																		"op": "<",
+																		"left": "N",
+																		"right": 3
+																	},
+																	"right": {
+																		"op": "=",
+																		"left": "items3",
+																		"right": "C"
+																	}
+																}
+															},
+															"right": {
+																"op": "∨",
+																"left": {
+																	"op": "<",
+																	"left": "N",
+																	"right": 4
+																},
+																"right": {
+																	"op": "=",
+																	"left": "items4",
+																	"right": "C"
+																}
+															}
+														},
+														"right": {
+															"op": "∨",
+															"left": {
+																"op": "<",
+																"left": "N",
+																"right": 5
+															},
+															"right": {
+																"op": "=",
+																"left": "items5",
+																"right": "C"
+															}
+														}
+													},
+													"right": {
+														"op": "∨",
+														"left": {
+															"op": "<",
+															"left": "N",
+															"right": 6
+														},
+														"right": {
+															"op": "=",
+															"left": "items6",
+															"right": "C"
+														}
+													}
+												},
+												"right": {
+													"op": "∨",
+													"left": {
+														"op": "<",
+														"left": "N",
+														"right": 7
+													},
+													"right": {
+														"op": "=",
+														"left": "items7",
+														"right": "C"
+													}
+												}
+											},
+											"right": {
+												"op": "∨",
+												"left": {
+													"op": "<",
+													"left": "N",
+													"right": 8
+												},
+												"right": {
+													"op": "=",
+													"left": "items8",
+													"right": "C"
+												}
+											}
+										},
+										"right": {
+											"op": "∨",
+											"left": {
+												"op": "<",
+												"left": "N",
+												"right": 9
+											},
+											"right": {
+												"op": "=",
+												"left": "items9",
+												"right": "C"
+											}
+										}
+									},
+									"right": {
+										"op": "∨",
+										"left": {
+											"op": "<",
+											"left": "N",
+											"right": 10
+										},
+										"right": {
+											"op": "=",
+											"left": "items10",
+											"right": "C"
+										}
+									}
+								}
+							},
+							"opt": "min"
+						},
+						{
+							"exp": {
+								"op": "Pmax",
+								"exp": {
+									"op": "F",
+									"exp": {
+										"op": "∧",
+										"left": {
+											"op": "∧",
+											"left": {
+												"op": "∧",
+												"left": {
+													"op": "∧",
+													"left": {
+														"op": "∧",
+														"left": {
+															"op": "∧",
+															"left": {
+																"op": "∧",
+																"left": {
+																	"op": "∧",
+																	"left": {
+																		"op": "∧",
+																		"left": {
+																			"op": "∨",
+																			"left": {
+																				"op": "<",
+																				"left": "N",
+																				"right": 1
+																			},
+																			"right": {
+																				"op": "=",
+																				"left": "items1",
+																				"right": "C"
+																			}
+																		},
+																		"right": {
+																			"op": "∨",
+																			"left": {
+																				"op": "<",
+																				"left": "N",
+																				"right": 2
+																			},
+																			"right": {
+																				"op": "=",
+																				"left": "items2",
+																				"right": "C"
+																			}
+																		}
+																	},
+																	"right": {
+																		"op": "∨",
+																		"left": {
+																			"op": "<",
+																			"left": "N",
+																			"right": 3
+																		},
+																		"right": {
+																			"op": "=",
+																			"left": "items3",
+																			"right": "C"
+																		}
+																	}
+																},
+																"right": {
+																	"op": "∨",
+																	"left": {
+																		"op": "<",
+																		"left": "N",
+																		"right": 4
+																	},
+																	"right": {
+																		"op": "=",
+																		"left": "items4",
+																		"right": "C"
+																	}
+																}
+															},
+															"right": {
+																"op": "∨",
+																"left": {
+																	"op": "<",
+																	"left": "N",
+																	"right": 5
+																},
+																"right": {
+																	"op": "=",
+																	"left": "items5",
+																	"right": "C"
+																}
+															}
+														},
+														"right": {
+															"op": "∨",
+															"left": {
+																"op": "<",
+																"left": "N",
+																"right": 6
+															},
+															"right": {
+																"op": "=",
+																"left": "items6",
+																"right": "C"
+															}
+														}
+													},
+													"right": {
+														"op": "∨",
+														"left": {
+															"op": "<",
+															"left": "N",
+															"right": 7
+														},
+														"right": {
+															"op": "=",
+															"left": "items7",
+															"right": "C"
+														}
+													}
+												},
+												"right": {
+													"op": "∨",
+													"left": {
+														"op": "<",
+														"left": "N",
+														"right": 8
+													},
+													"right": {
+														"op": "=",
+														"left": "items8",
+														"right": "C"
+													}
+												}
+											},
+											"right": {
+												"op": "∨",
+												"left": {
+													"op": "<",
+													"left": "N",
+													"right": 9
+												},
+												"right": {
+													"op": "=",
+													"left": "items9",
+													"right": "C"
+												}
+											}
+										},
+										"right": {
+											"op": "∨",
+											"left": {
+												"op": "<",
+												"left": "N",
+												"right": 10
+											},
+											"right": {
+												"op": "=",
+												"left": "items10",
+												"right": "C"
+											}
+										}
+									},
+									"time-bounds": {
+										"upper": "TIME_BOUND"
+									}
+								}
+							},
+							"opt": "max"
+						},
+						{
+							"exp": {
+								"op": "Smax",
+								"exp": {
+									"op": "ite",
+									"if": {
+										"op": "∧",
+										"left": {
+											"op": "∧",
+											"left": {
+												"op": "∧",
+												"left": {
+													"op": "∧",
+													"left": {
+														"op": "∧",
+														"left": {
+															"op": "∧",
+															"left": {
+																"op": "∧",
+																"left": {
+																	"op": "∧",
+																	"left": {
+																		"op": "∧",
+																		"left": {
+																			"op": "∨",
+																			"left": {
+																				"op": "<",
+																				"left": "N",
+																				"right": 1
+																			},
+																			"right": {
+																				"op": "=",
+																				"left": "items1",
+																				"right": "C"
+																			}
+																		},
+																		"right": {
+																			"op": "∨",
+																			"left": {
+																				"op": "<",
+																				"left": "N",
+																				"right": 2
+																			},
+																			"right": {
+																				"op": "=",
+																				"left": "items2",
+																				"right": "C"
+																			}
+																		}
+																	},
+																	"right": {
+																		"op": "∨",
+																		"left": {
+																			"op": "<",
+																			"left": "N",
+																			"right": 3
+																		},
+																		"right": {
+																			"op": "=",
+																			"left": "items3",
+																			"right": "C"
+																		}
+																	}
+																},
+																"right": {
+																	"op": "∨",
+																	"left": {
+																		"op": "<",
+																		"left": "N",
+																		"right": 4
+																	},
+																	"right": {
+																		"op": "=",
+																		"left": "items4",
+																		"right": "C"
+																	}
+																}
+															},
+															"right": {
+																"op": "∨",
+																"left": {
+																	"op": "<",
+																	"left": "N",
+																	"right": 5
+																},
+																"right": {
+																	"op": "=",
+																	"left": "items5",
+																	"right": "C"
+																}
+															}
+														},
+														"right": {
+															"op": "∨",
+															"left": {
+																"op": "<",
+																"left": "N",
+																"right": 6
+															},
+															"right": {
+																"op": "=",
+																"left": "items6",
+																"right": "C"
+															}
+														}
+													},
+													"right": {
+														"op": "∨",
+														"left": {
+															"op": "<",
+															"left": "N",
+															"right": 7
+														},
+														"right": {
+															"op": "=",
+															"left": "items7",
+															"right": "C"
+														}
+													}
+												},
+												"right": {
+													"op": "∨",
+													"left": {
+														"op": "<",
+														"left": "N",
+														"right": 8
+													},
+													"right": {
+														"op": "=",
+														"left": "items8",
+														"right": "C"
+													}
+												}
+											},
+											"right": {
+												"op": "∨",
+												"left": {
+													"op": "<",
+													"left": "N",
+													"right": 9
+												},
+												"right": {
+													"op": "=",
+													"left": "items9",
+													"right": "C"
+												}
+											}
+										},
+										"right": {
+											"op": "∨",
+											"left": {
+												"op": "<",
+												"left": "N",
+												"right": 10
+											},
+											"right": {
+												"op": "=",
+												"left": "items10",
+												"right": "C"
+											}
+										}
+									},
+									"then": 1,
+									"else": 0
+								},
+								"accumulate": [ "time" ]
+							},
+							"opt": "max"
+						}
+					],
+					"type": "tradeoff"
+				},
+				"states": {
+					"op": "initial"
+				}
 			}
 		}
 	],

@@ -5,7 +5,8 @@
 	"features": [
 		"derived-operators",
 		"nondet-selection",
-		"arrays"
+		"arrays",
+		"multi-objective-properties"
 	],
 	"actions": [
 		{
@@ -261,43 +262,17 @@
 		{
 			"name": "Multi",
 			"expression": {
-				"op": "Multi",
-				"properties": [
-					{
-						"exp": {
-							"op": "Emin",
-							"exp": 1,
-							"accumulate": [ "time" ],
-							"reach": {
-								"op": "∧",
-								"left": {
-									"op": "=",
-									"left": {
-										"op": "aa",
-										"exp": "size",
-										"index": 0
-									},
-									"right": "C"
-								},
-								"right": {
-									"op": "=",
-									"left": {
-										"op": "aa",
-										"exp": "size",
-										"index": 1
-									},
-									"right": "C"
-								}
-							}
-						},
-						"opt": "min"
-					},
-					{
-						"exp": {
-							"op": "Pmax",
+				"op": "filter",
+				"fun": "values",
+				"values": {
+					"op": "Multi",
+					"properties": [
+						{
 							"exp": {
-								"op": "F",
-								"exp": {
+								"op": "Emin",
+								"exp": 1,
+								"accumulate": [ "time" ],
+								"reach": {
 									"op": "∧",
 									"left": {
 										"op": "=",
@@ -317,49 +292,82 @@
 										},
 										"right": "C"
 									}
-								},
-								"time-bounds": {
-									"upper": "TIME_BOUND"
 								}
-							}
-						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Smax",
-							"exp": {
-								"op": "ite",
-								"if": {
-									"op": "∧",
-									"left": {
-										"op": "=",
-										"left": {
-											"op": "aa",
-											"exp": "size",
-											"index": 0
-										},
-										"right": "C"
-									},
-									"right": {
-										"op": "=",
-										"left": {
-											"op": "aa",
-											"exp": "size",
-											"index": 1
-										},
-										"right": "C"
-									}
-								},
-								"then": 1,
-								"else": 0
 							},
-							"accumulate": [ "time" ]
+							"opt": "min"
 						},
-						"opt": "max"
-					}
-				],
-				"type": "tradeoff"
+						{
+							"exp": {
+								"op": "Pmax",
+								"exp": {
+									"op": "F",
+									"exp": {
+										"op": "∧",
+										"left": {
+											"op": "=",
+											"left": {
+												"op": "aa",
+												"exp": "size",
+												"index": 0
+											},
+											"right": "C"
+										},
+										"right": {
+											"op": "=",
+											"left": {
+												"op": "aa",
+												"exp": "size",
+												"index": 1
+											},
+											"right": "C"
+										}
+									},
+									"time-bounds": {
+										"upper": "TIME_BOUND"
+									}
+								}
+							},
+							"opt": "max"
+						},
+						{
+							"exp": {
+								"op": "Smax",
+								"exp": {
+									"op": "ite",
+									"if": {
+										"op": "∧",
+										"left": {
+											"op": "=",
+											"left": {
+												"op": "aa",
+												"exp": "size",
+												"index": 0
+											},
+											"right": "C"
+										},
+										"right": {
+											"op": "=",
+											"left": {
+												"op": "aa",
+												"exp": "size",
+												"index": 1
+											},
+											"right": "C"
+										}
+									},
+									"then": 1,
+									"else": 0
+								},
+								"accumulate": [ "time" ]
+							},
+							"opt": "max"
+						}
+					],
+					"type": "tradeoff"
+				},
+				"states": {
+					"op": "initial"
+				}
 			}
 		}
 	],

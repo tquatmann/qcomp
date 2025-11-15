@@ -4,7 +4,8 @@
 	"type": "ma",
 	"features": [
 		"derived-operators",
-		"arrays"
+		"arrays",
+		"multi-objective-properties"
 	],
 	"actions": [
 		{
@@ -413,59 +414,17 @@
 		{
 			"name": "Multi",
 			"expression": {
-				"op": "Multi",
-				"properties": [
-					{
-						"exp": {
-							"op": "Emax",
-							"exp": 1,
-							"accumulate": [ "time" ],
-							"reach": {
-								"op": "∧",
-								"left": {
-									"op": "∨",
-									"left": {
-										"op": "=",
-										"left": {
-											"op": "aa",
-											"exp": "workstations_up",
-											"index": 0
-										},
-										"right": 0
-									},
-									"right": {
-										"op": "aa",
-										"exp": "switches_down",
-										"index": 0
-									}
-								},
-								"right": {
-									"op": "∨",
-									"left": {
-										"op": "=",
-										"left": {
-											"op": "aa",
-											"exp": "workstations_up",
-											"index": 1
-										},
-										"right": 0
-									},
-									"right": {
-										"op": "aa",
-										"exp": "switches_down",
-										"index": 1
-									}
-								}
-							}
-						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Smax",
+				"op": "filter",
+				"fun": "values",
+				"values": {
+					"op": "Multi",
+					"properties": [
+						{
 							"exp": {
-								"op": "ite",
-								"if": {
+								"op": "Emax",
+								"exp": 1,
+								"accumulate": [ "time" ],
+								"reach": {
 									"op": "∧",
 									"left": {
 										"op": "∨",
@@ -501,65 +460,114 @@
 											"index": 1
 										}
 									}
-								},
-								"then": 1,
-								"else": 0
+								}
 							},
-							"accumulate": [ "time" ]
+							"opt": "max"
 						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Pmax",
+						{
 							"exp": {
-								"op": "F",
+								"op": "Smax",
 								"exp": {
-									"op": "∧",
-									"left": {
-										"op": "∨",
+									"op": "ite",
+									"if": {
+										"op": "∧",
 										"left": {
-											"op": "=",
+											"op": "∨",
 											"left": {
-												"op": "aa",
-												"exp": "workstations_up",
-												"index": 0
+												"op": "=",
+												"left": {
+													"op": "aa",
+													"exp": "workstations_up",
+													"index": 0
+												},
+												"right": 0
 											},
-											"right": 0
+											"right": {
+												"op": "aa",
+												"exp": "switches_down",
+												"index": 0
+											}
 										},
 										"right": {
-											"op": "aa",
-											"exp": "switches_down",
-											"index": 0
+											"op": "∨",
+											"left": {
+												"op": "=",
+												"left": {
+													"op": "aa",
+													"exp": "workstations_up",
+													"index": 1
+												},
+												"right": 0
+											},
+											"right": {
+												"op": "aa",
+												"exp": "switches_down",
+												"index": 1
+											}
 										}
 									},
-									"right": {
-										"op": "∨",
+									"then": 1,
+									"else": 0
+								},
+								"accumulate": [ "time" ]
+							},
+							"opt": "max"
+						},
+						{
+							"exp": {
+								"op": "Pmax",
+								"exp": {
+									"op": "F",
+									"exp": {
+										"op": "∧",
 										"left": {
-											"op": "=",
+											"op": "∨",
 											"left": {
-												"op": "aa",
-												"exp": "workstations_up",
-												"index": 1
+												"op": "=",
+												"left": {
+													"op": "aa",
+													"exp": "workstations_up",
+													"index": 0
+												},
+												"right": 0
 											},
-											"right": 0
+											"right": {
+												"op": "aa",
+												"exp": "switches_down",
+												"index": 0
+											}
 										},
 										"right": {
-											"op": "aa",
-											"exp": "switches_down",
-											"index": 1
+											"op": "∨",
+											"left": {
+												"op": "=",
+												"left": {
+													"op": "aa",
+													"exp": "workstations_up",
+													"index": 1
+												},
+												"right": 0
+											},
+											"right": {
+												"op": "aa",
+												"exp": "switches_down",
+												"index": 1
+											}
 										}
+									},
+									"time-bounds": {
+										"upper": "TIME_BOUND"
 									}
-								},
-								"time-bounds": {
-									"upper": "TIME_BOUND"
 								}
-							}
-						},
-						"opt": "max"
-					}
-				],
-				"type": "tradeoff"
+							},
+							"opt": "max"
+						}
+					],
+					"type": "tradeoff"
+				},
+				"states": {
+					"op": "initial"
+				}
 			}
 		}
 	],

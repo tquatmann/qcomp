@@ -2,7 +2,10 @@
 	"jani-version": 1,
 	"name": "wlan-large",
 	"type": "sta",
-	"features": [ "derived-operators" ],
+	"features": [
+		"derived-operators",
+		"multi-objective-properties"
+	],
 	"actions": [
 		{
 			"name": "finish1"
@@ -284,162 +287,176 @@
 		{
 			"name": "MultiPos",
 			"expression": {
-				"op": "Multi",
-				"properties": [
-					{
-						"exp": {
-							"op": "≥",
-							"left": {
+				"op": "filter",
+				"fun": "values",
+				"values": {
+					"op": "Multi",
+					"properties": [
+						{
+							"exp": {
+								"op": "≥",
+								"left": {
+									"op": "Pmax",
+									"exp": {
+										"op": "F",
+										"exp": {
+											"op": "∧",
+											"left": "success1_seen",
+											"right": "success2_seen"
+										}
+									}
+								},
+								"right": 1
+							}
+						},
+						{
+							"exp": {
 								"op": "Pmax",
+								"exp": {
+									"op": "F",
+									"exp": {
+										"op": "∨",
+										"left": {
+											"op": "=",
+											"left": "bc1",
+											"right": "K"
+										},
+										"right": {
+											"op": "=",
+											"left": "bc2",
+											"right": "K"
+										}
+									}
+								}
+							},
+							"opt": "max"
+						}
+					],
+					"type": "tradeoff"
+				},
+				"states": {
+					"op": "initial"
+				}
+			}
+		},
+		{
+			"name": "MultiNeg",
+			"expression": {
+				"op": "filter",
+				"fun": "values",
+				"values": {
+					"op": "Multi",
+					"properties": [
+						{
+							"exp": {
+								"op": "Pmin",
+								"exp": {
+									"op": "F",
+									"exp": {
+										"op": "∨",
+										"left": {
+											"op": "=",
+											"left": "bc1",
+											"right": "K"
+										},
+										"right": {
+											"op": "=",
+											"left": "bc2",
+											"right": "K"
+										}
+									}
+								}
+							},
+							"opt": "min"
+						},
+						{
+							"exp": {
+								"op": "Pmin",
 								"exp": {
 									"op": "F",
 									"exp": {
 										"op": "∧",
 										"left": "success1_seen",
 										"right": "success2_seen"
+									},
+									"time-bounds": {
+										"upper": 78585
 									}
 								}
 							},
-							"right": 1
-						}
-					},
-					{
-						"exp": {
-							"op": "Pmax",
+							"opt": "min"
+						},
+						{
 							"exp": {
-								"op": "F",
+								"op": "Pmin",
 								"exp": {
-									"op": "∨",
-									"left": {
-										"op": "=",
-										"left": "bc1",
-										"right": "K"
+									"op": "F",
+									"exp": {
+										"op": "∨",
+										"left": "success1_seen",
+										"right": "success2_seen"
 									},
-									"right": {
-										"op": "=",
-										"left": "bc2",
-										"right": "K"
+									"time-bounds": {
+										"upper": 78585
 									}
 								}
-							}
+							},
+							"opt": "min"
 						},
-						"opt": "max"
-					}
-				],
-				"type": "tradeoff"
-			}
-		},
-		{
-			"name": "MultiNeg",
-			"expression": {
-				"op": "Multi",
-				"properties": [
-					{
-						"exp": {
-							"op": "Pmin",
+						{
 							"exp": {
-								"op": "F",
+								"op": "Pmin",
 								"exp": {
-									"op": "∨",
-									"left": {
-										"op": "=",
-										"left": "bc1",
-										"right": "K"
-									},
-									"right": {
-										"op": "=",
-										"left": "bc2",
-										"right": "K"
+									"op": "F",
+									"exp": "success1_seen",
+									"time-bounds": {
+										"upper": 78585
 									}
 								}
-							}
+							},
+							"opt": "min"
 						},
-						"opt": "min"
-					},
-					{
-						"exp": {
-							"op": "Pmin",
+						{
 							"exp": {
-								"op": "F",
-								"exp": {
+								"op": "Emax",
+								"exp": 1,
+								"accumulate": [ "time" ],
+								"reach": {
 									"op": "∧",
 									"left": "success1_seen",
 									"right": "success2_seen"
-								},
-								"time-bounds": {
-									"upper": 78585
 								}
-							}
+							},
+							"opt": "max"
 						},
-						"opt": "min"
-					},
-					{
-						"exp": {
-							"op": "Pmin",
+						{
 							"exp": {
-								"op": "F",
-								"exp": {
+								"op": "Emax",
+								"exp": 1,
+								"accumulate": [ "time" ],
+								"reach": {
 									"op": "∨",
 									"left": "success1_seen",
 									"right": "success2_seen"
-								},
-								"time-bounds": {
-									"upper": 78585
 								}
-							}
+							},
+							"opt": "max"
 						},
-						"opt": "min"
-					},
-					{
-						"exp": {
-							"op": "Pmin",
+						{
 							"exp": {
-								"op": "F",
-								"exp": "success1_seen",
-								"time-bounds": {
-									"upper": 78585
-								}
-							}
-						},
-						"opt": "min"
-					},
-					{
-						"exp": {
-							"op": "Emax",
-							"exp": 1,
-							"accumulate": [ "time" ],
-							"reach": {
-								"op": "∧",
-								"left": "success1_seen",
-								"right": "success2_seen"
-							}
-						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Emax",
-							"exp": 1,
-							"accumulate": [ "time" ],
-							"reach": {
-								"op": "∨",
-								"left": "success1_seen",
-								"right": "success2_seen"
-							}
-						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Emax",
-							"exp": 1,
-							"accumulate": [ "time" ],
-							"reach": "success1_seen"
-						},
-						"opt": "max"
-					}
-				],
-				"type": "tradeoff"
+								"op": "Emax",
+								"exp": 1,
+								"accumulate": [ "time" ],
+								"reach": "success1_seen"
+							},
+							"opt": "max"
+						}
+					],
+					"type": "tradeoff"
+				},
+				"states": {
+					"op": "initial"
+				}
 			}
 		}
 	],

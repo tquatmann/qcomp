@@ -5,7 +5,8 @@
 	"features": [
 		"derived-operators",
 		"nondet-selection",
-		"arrays"
+		"arrays",
+		"multi-objective-properties"
 	],
 	"actions": [
 		{
@@ -234,35 +235,17 @@
 		{
 			"name": "Multi",
 			"expression": {
-				"op": "Multi",
-				"properties": [
-					{
-						"exp": {
-							"op": "Emin",
-							"exp": 1,
-							"accumulate": [ "time" ],
-							"reach": {
-								"op": "∧",
-								"left": {
-									"op": "=",
-									"left": "sizeLeft",
-									"right": "C_LEFT"
-								},
-								"right": {
-									"op": "=",
-									"left": "sizeRight",
-									"right": "C_RIGHT"
-								}
-							}
-						},
-						"opt": "min"
-					},
-					{
-						"exp": {
-							"op": "Pmax",
+				"op": "filter",
+				"fun": "values",
+				"values": {
+					"op": "Multi",
+					"properties": [
+						{
 							"exp": {
-								"op": "F",
-								"exp": {
+								"op": "Emin",
+								"exp": 1,
+								"accumulate": [ "time" ],
+								"reach": {
 									"op": "∧",
 									"left": {
 										"op": "=",
@@ -274,41 +257,66 @@
 										"left": "sizeRight",
 										"right": "C_RIGHT"
 									}
-								},
-								"time-bounds": {
-									"upper": "TIME_BOUND"
 								}
-							}
-						},
-						"opt": "max"
-					},
-					{
-						"exp": {
-							"op": "Smax",
-							"exp": {
-								"op": "ite",
-								"if": {
-									"op": "∧",
-									"left": {
-										"op": "=",
-										"left": "sizeLeft",
-										"right": "C_LEFT"
-									},
-									"right": {
-										"op": "=",
-										"left": "sizeRight",
-										"right": "C_RIGHT"
-									}
-								},
-								"then": 1,
-								"else": 0
 							},
-							"accumulate": [ "time" ]
+							"opt": "min"
 						},
-						"opt": "max"
-					}
-				],
-				"type": "tradeoff"
+						{
+							"exp": {
+								"op": "Pmax",
+								"exp": {
+									"op": "F",
+									"exp": {
+										"op": "∧",
+										"left": {
+											"op": "=",
+											"left": "sizeLeft",
+											"right": "C_LEFT"
+										},
+										"right": {
+											"op": "=",
+											"left": "sizeRight",
+											"right": "C_RIGHT"
+										}
+									},
+									"time-bounds": {
+										"upper": "TIME_BOUND"
+									}
+								}
+							},
+							"opt": "max"
+						},
+						{
+							"exp": {
+								"op": "Smax",
+								"exp": {
+									"op": "ite",
+									"if": {
+										"op": "∧",
+										"left": {
+											"op": "=",
+											"left": "sizeLeft",
+											"right": "C_LEFT"
+										},
+										"right": {
+											"op": "=",
+											"left": "sizeRight",
+											"right": "C_RIGHT"
+										}
+									},
+									"then": 1,
+									"else": 0
+								},
+								"accumulate": [ "time" ]
+							},
+							"opt": "max"
+						}
+					],
+					"type": "tradeoff"
+				},
+				"states": {
+					"op": "initial"
+				}
 			}
 		}
 	],
