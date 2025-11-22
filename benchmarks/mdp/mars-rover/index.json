@@ -55,7 +55,7 @@
 			"type": "prob-reach-reward-bounded"
 		},
 		{
-			"name": "max_value_bounded",
+			"name": "bounded_tradeoff",
 			"description": "The maximum probability of obtaining any value without exceeding time or energy constraints.",
 			"type": "multi-tradeoff"
 		},
